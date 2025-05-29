@@ -20,7 +20,7 @@ const showAppShell = computed(() => route.path !== '/');
   <div class="app-container">
     <div class="global-video-background-container" v-show="showVideoBackground">
       <video autoplay loop muted playsinline>
-        <source src="@/assets/backgroundVideo.mp4" type="video/mp4">
+        <source src="@/assets/Background_Video.mp4" type="video/mp4">
       </video>
     </div>
 

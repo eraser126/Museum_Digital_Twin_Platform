@@ -1,14 +1,5 @@
 <template>
   <div class="app-container">
-    <!-- 背景视频 -->
-    <!-- <div class="video-background">
-      <video autoplay loop muted playsinline>
-        <source src="@/assets/backgroundVideo.mp4" type="video/mp4">
-      </video>
-    </div> -->
-
-    <!-- 左侧导航栏 -->
-    <!-- <SideBar /> -->
 
     <!-- 主要内容区域 -->
     <div class="main-container">
