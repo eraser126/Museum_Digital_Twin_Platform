@@ -1,9 +1,12 @@
 <template>
   <nav class="sidebar" :class="{ 'collapsed': isCollapsed }">
-    <div class="nav-toggle" @click="toggleSidebar">
-      <el-icon><Fold v-if="!isCollapsed" /><Expand v-else /></el-icon>
-    </div>
     <div class="nav-items">
+      <router-link to="/" class="nav-item" active-class="active">
+        <el-icon><Back /></el-icon>
+        <transition name="fade-text">
+          <span v-if="!isCollapsed">返回</span>
+        </transition>
+      </router-link>
       <router-link to="/home" class="nav-item" active-class="active">
         <el-icon><House /></el-icon>
         <transition name="fade-text">
@@ -19,7 +22,7 @@
       <router-link to="/comment" class="nav-item" active-class="active">
         <el-icon><VideoCamera /></el-icon>
         <transition name="fade-text">
-          <span v-if="!isCollapsed">媒体</span>
+          <span v-if="!isCollapsed">评论</span>
         </transition>
       </router-link>
       <router-link to="/map" class="nav-item" active-class="active">
@@ -35,12 +38,16 @@
         </transition>
       </router-link>
     </div>
+    <div class="nav-toggle" @click="toggleSidebar">
+      <el-icon><Fold v-if="!isCollapsed" /><Expand v-else /></el-icon>
+    </div>
   </nav>
 </template>
 
 <script>
 import { ref } from 'vue'
-import { House, VideoCamera, Comment, Expand, Fold, Location, Goods } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+import { House, VideoCamera, Comment, Expand, Fold, Location, Goods, Back } from '@element-plus/icons-vue'
 import { TeamOutlined } from '@ant-design/icons-vue'
 
 export default {
@@ -53,16 +60,16 @@ export default {
     Fold,
     Location,
     Goods,
+    Back,
     TeamOutlined
   },
   setup() {
-    // Read initial collapsed state from localStorage, default to false (expanded)
+    const router = useRouter();
     const initialCollapsedState = localStorage.getItem('sidebarCollapsed');
     const isCollapsed = ref(initialCollapsedState === 'true');
     
     const toggleSidebar = () => {
       isCollapsed.value = !isCollapsed.value;
-      // Save the new state to localStorage
       localStorage.setItem('sidebarCollapsed', isCollapsed.value.toString());
     };
 
@@ -93,16 +100,50 @@ export default {
   width: 8vh;
 }
 
-.nav-toggle {
+.back-button-container {
   padding: 2vh 20px;
   margin: 0;
-  /* margin-bottom: 20px; */
   cursor: pointer;
   height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button-container .el-icon {
+  font-size: 2.4vh;
+  color: #fff;
+}
+
+.sidebar.collapsed .back-button-container {
+  /* Optional: specific styles when collapsed, e.g., if text was present */
+}
+
+.sidebar .nav-toggle {
+  padding: 10px 20px;
+  margin: 0;
+  cursor: pointer;
+  height: 7vh;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.8vh;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.collapsed .nav-toggle {
+  /* justify-content: center; */ /* Removed to keep icon on the left */
 }
 
 .nav-toggle .el-icon {
   font-size: 2.4vh;
+  margin-right: 2vh;
 }
 
 .nav-items {
@@ -112,10 +153,9 @@ export default {
 
 .nav-item {
   padding: 10px 20px;
-  height: 6vh;
+  height: 7vh;
   display: flex;
   align-items: center;
-  /* gap: 12px; */
   cursor: pointer;
   transition: all 0.3s;
   font-size: 1.8vh;
