@@ -8,12 +8,12 @@
     </div> -->
 
     <!-- 左侧导航栏 -->
-    <SideBar />
+    <!-- <SideBar /> -->
 
     <!-- 主要内容区域 -->
     <div class="main-container">
       <!-- 顶部信息栏 -->
-      <TopBar />
+      <!-- <TopBar /> -->
 
       <!-- 地图展示区域 -->
       <div class="map-content-area">
@@ -128,10 +128,30 @@ export default {
 </script>
 
 <style scoped>
+@keyframes fadeInContainer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInContentItem {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .app-container {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   color: #fff;
   overflow: hidden;
 }
@@ -141,26 +161,12 @@ export default {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   position: relative;
   background-color: #000000;
-}
-
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.video-background video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  opacity: 0; /* Initial state for animation */
+  animation: fadeInContainer 0.5s ease-out forwards;
 }
 
 .map-content-area {
@@ -183,12 +189,16 @@ export default {
   color: #000000;
   margin-top: 1vh;
   margin-bottom: 0.5vh;
+  opacity: 0; /* Initial state for animation */
+  animation: fadeInContentItem 0.5s ease-out 0.4s forwards; /* Delay after container animation starts */
 }
 
 .map-subtitle {
   font-size: 1.8vh;
   color: #000000;
   margin-bottom: 1vh;
+  opacity: 0; /* Initial state for animation */
+  animation: fadeInContentItem 0.5s ease-out 0.7s forwards; /* Staggered delay */
 }
 
 .floor-plan-carousel {
@@ -201,6 +211,8 @@ export default {
   position: relative;
   margin-bottom: 0vh;
   /* background-color: #000000; */
+  opacity: 0; /* Initial state for animation */
+  animation: fadeInContentItem 0.5s ease-out 1.0s forwards; /* Staggered delay */
 }
 
 .carousel-images {
@@ -212,18 +224,20 @@ export default {
 }
 
 .floor-map-image {
-  max-width: 100%; /* Adjust as needed, for side images */
-  max-height: 100%; /* Base max height */
+  max-width: 100%; /* Base max width for side images, might be overridden by .prev/.next */
+  max-height: 100%; /* Base max height for side images */
   object-fit: contain;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
+  position: absolute; /* For overlapping and transitioning */
+  opacity: 0.7; /* Default opacity for non-active, non-transitioning side images */
+  filter: brightness(0.8) saturate(0.7); /* Default filter for non-active */
   transition: transform 0.6s cubic-bezier(0.35, 0.85, 0.25, 1), 
               opacity 0.6s cubic-bezier(0.35, 0.85, 0.25, 1), 
               filter 0.6s cubic-bezier(0.35, 0.85, 0.25, 1), 
               max-width 0.6s cubic-bezier(0.35, 0.85, 0.25, 1), 
               max-height 0.6s cubic-bezier(0.35, 0.85, 0.25, 1);
-  opacity: 1; /* Increased opacity for non-active images */
-  filter: brightness(0.9) saturate(0.6); /* Increased brightness for non-active images */
-  position: absolute; /* For overlapping and transitioning */
+  z-index: 1; /* Default z-index */
 }
 
 .floor-map-image.active {
@@ -237,12 +251,19 @@ export default {
 
 .floor-map-image.prev {
   transform: translateX(-75%) scale(0.85); /* Move left, slightly smaller */
+  opacity: 0.7; /* Opacity for side images */
+  filter: brightness(0.8) saturate(0.7); /* Filter for side images */
   z-index: 5;
+  /* max-width for prev/next can be a percentage of the container or a fixed value if needed */
+  /* e.g., max-width: 70%; */
 }
 
 .floor-map-image.next {
   transform: translateX(75%) scale(0.85); /* Move right, slightly smaller */
+  opacity: 0.7; /* Opacity for side images */
+  filter: brightness(0.8) saturate(0.7); /* Filter for side images */
   z-index: 5;
+  /* e.g., max-width: 70%; */
 }
 
 /* Adjustments for only two images, or initial/final states */
@@ -263,6 +284,8 @@ export default {
   /* background-color: rgba(0, 0, 0, 0.3); */
   border-radius: 8px;
   margin-bottom: 1vh; /* Space from bottom */
+  opacity: 0; /* Initial state for animation */
+  animation: fadeInContentItem 0.5s ease-out 1.3s forwards; /* Staggered delay */
 }
 
 .legend-column {

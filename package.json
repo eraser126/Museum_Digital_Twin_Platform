@@ -16,6 +16,7 @@
     "ant-design-vue": "^4.2.6",
     "echarts": "^5.6.0",
     "element-plus": "^2.9.11",
+    "gsap": "^3.13.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

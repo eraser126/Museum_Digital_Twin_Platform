@@ -1,14 +1,8 @@
 <template>
-  <div class="app-container">
+  <div class="comment-view-root">
     
-    <!-- 左侧导航栏 -->
-    <SideBar />
-
     <!-- 主要内容区域 -->
     <div class="main-container">
-      <!-- 顶部信息栏 -->
-      <TopBar />
-
       <!-- 主要展示区域 -->
       <div class="content-area">
         <!-- 1号块（预留） -->
@@ -152,15 +146,16 @@
 
 <script>
 import { ref, onMounted } from 'vue'
-import SideBar from '@/components/SideBar.vue'
-import TopBar from '@/components/TopBar.vue'
+// SideBar and TopBar are now global, remove local import if not specifically used here
+// import SideBar from '@/components/SideBar.vue' 
+// import TopBar from '@/components/TopBar.vue'
 import { Monitor, Avatar, Box } from '@element-plus/icons-vue'
 
 export default {
   name: "CommentView",
   components: {
-    SideBar,
-    TopBar,
+    // SideBar,
+    // TopBar,
     Monitor,
     Avatar,
     Box
@@ -181,22 +176,25 @@ export default {
   }
 }
 
-/* .app-container specific to CommentView if needed, or a new root class */
-.app-container {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
+/* Renamed from .app-container to avoid confusion and style for CommentView's root */
+.comment-view-root {
+  display: flex; /* Changed from flex:1 and height/width 100% */
+  flex-direction: column;
+  height: 100%; /* Should fill the space given by App.vue's content-area */
+  width: 100%;
   color: #fff;
-  overflow: hidden;
+  overflow: hidden; /* This view itself manages its internal overflow */
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow from this element */
 }
 
 .main-container {
-  flex: 1;
+  flex: 1; /* Takes available vertical space in comment-view-root */
   display: flex;
   flex-direction: column;
   min-width: 0;
-  height: 100vh;
-  overflow: hidden;
+  /* height: 100vh; */ /* REMOVED - This was causing overflow */
+  height: 100%; /* Fills the parent .comment-view-root */
+  overflow: hidden; /* Manages its own overflow, typically for .content-area's scroll */
   position: relative;
 }
 
@@ -221,13 +219,15 @@ export default {
 /* 视频背景样式 - END REMOVAL */
 
 .content-area {
-  flex: 1;
+  flex: 1; /* Takes available vertical space in main-container */
   padding: 2vh 3vh 2.5vh 2vh;
   display: grid;
   grid-template-columns: 65% 35%;
   grid-template-rows: 65% 35%;
   gap: 1vh;
-  min-height: 0;
+  min-height: 0; /* Important for flex/grid children to shrink correctly */
+  overflow-y: hidden;
+  overflow-x: hidden;
   /* 为子元素应用动画 */
 }
 

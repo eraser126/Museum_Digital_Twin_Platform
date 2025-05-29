@@ -2,8 +2,8 @@
   <header class="top-bar">
     <router-link to="/" class="logo-link">
       <div class="logo">
-        <h1>博物馆数字孪生平台</h1>
-        <p>Museum Digital Twin Platform</p>
+        <h1>博物馆数字孪生可视化平台</h1>
+        <p>Museum Digital Twin Visualization Platform</p>
       </div>
     </router-link>
     <div class="weather-info">
@@ -83,7 +83,7 @@ export default {
 }
 
 .logo h1 {
-  font-size: 2.4vh;
+  font-size: 2.6vh;
   line-height: 1.2;
   margin: 0;
   font-weight: 500;

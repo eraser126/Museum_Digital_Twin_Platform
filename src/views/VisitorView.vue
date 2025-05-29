@@ -2,12 +2,12 @@
   <div class="app-container">
     
     <!-- 左侧导航栏 -->
-    <SideBar />
+    <!-- <SideBar /> -->
 
     <!-- 主要内容区域 -->
     <div class="main-container">
       <!-- 顶部信息栏 -->
-      <TopBar />
+      <!-- <TopBar /> -->
 
       <!-- 主要展示区域 -->
       <div class="content-area">
@@ -201,8 +201,8 @@ export default {
 
 .app-container {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   color: #fff;
   overflow: hidden;
 }
@@ -212,25 +212,9 @@ export default {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   position: relative;
-}
-
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.video-background video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .content-area {
@@ -241,6 +225,8 @@ export default {
   grid-template-rows: 65% 35%;
   gap: 1vh;
   min-height: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
   /* 为子元素应用动画 */
 }
 

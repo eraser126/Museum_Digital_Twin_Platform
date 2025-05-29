@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import VisitorView from '../views/VisitorView.vue'
 import CommentView from '../views/CommentView.vue'
-import DeviceView from '../views/DeviceView.vue'
 import MapView from '@/views/MapView.vue'
 import LandingView from '@/views/LandingView.vue'
 import ProductView from '@/views/ProductView.vue'
@@ -29,14 +28,10 @@ const routes = [
     component: CommentView
   },
   {
-    path: '/device',
-    name: 'device',
-    component: DeviceView
-  },
-  {
     path: '/map',
     name: 'map',
-    component: MapView
+    component: MapView,
+    meta: { transitionName: 'slide-fade-right' }
   },
   {
     path: '/product',
@@ -47,7 +42,14 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0, behavior: 'smooth' };
+    }
+  }
 })
 
 export default router
