@@ -1,12 +1,8 @@
 <template>
   <div class="app-container">
-    <!-- 左侧导航栏 -->
-    <!-- <SideBar /> -->
 
     <!-- 主要内容区域 -->
     <div class="main-container">
-      <!-- 顶部信息栏 -->
-      <!-- <TopBar /> -->
 
       <!-- 主要展示区域 -->
       <div class="content-area">

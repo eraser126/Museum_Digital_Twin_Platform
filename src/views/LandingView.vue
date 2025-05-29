@@ -490,8 +490,6 @@ const goToHome = () => {
   }
 }
 
-/* === 退场动画（保持原有的） === */
-
 /* 标题退场动画 - 使用顶栏标题的原始逻辑 */
 @keyframes slideTitleToLeft {
   from {

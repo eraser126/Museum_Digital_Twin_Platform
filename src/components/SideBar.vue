@@ -16,10 +16,6 @@
         <el-icon><VideoCamera /></el-icon>
         <span v-show="!isCollapsed">媒体</span>
       </router-link>
-      <!-- <router-link to="/device" class="nav-item" active-class="active">
-        <el-icon><Comment /></el-icon>
-        <span v-show="!isCollapsed">设备</span>
-      </router-link> -->
       <router-link to="/map" class="nav-item" active-class="active">
         <el-icon><Location /></el-icon>
         <span v-show="!isCollapsed">地图</span>

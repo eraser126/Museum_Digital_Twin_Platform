@@ -146,9 +146,6 @@
 
 <script>
 import { ref, onMounted } from 'vue'
-// SideBar and TopBar are now global, remove local import if not specifically used here
-// import SideBar from '@/components/SideBar.vue' 
-// import TopBar from '@/components/TopBar.vue'
 import { Monitor, Avatar, Box } from '@element-plus/icons-vue'
 
 export default {
@@ -176,7 +173,6 @@ export default {
   }
 }
 
-/* Renamed from .app-container to avoid confusion and style for CommentView's root */
 .comment-view-root {
   display: flex; /* Changed from flex:1 and height/width 100% */
   flex-direction: column;
@@ -197,26 +193,6 @@ export default {
   overflow: hidden; /* Manages its own overflow, typically for .content-area's scroll */
   position: relative;
 }
-
-/* 视频背景样式 - START REMOVAL */
-/*
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.video-background video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-*/
-/* 视频背景样式 - END REMOVAL */
 
 .content-area {
   flex: 1; /* Takes available vertical space in main-container */

@@ -3,8 +3,6 @@
 
     <!-- 主要内容区域 -->
     <div class="main-container">
-      <!-- 顶部信息栏 -->
-      <!-- <TopBar /> -->
 
       <!-- 地图展示区域 -->
       <div class="map-content-area">
