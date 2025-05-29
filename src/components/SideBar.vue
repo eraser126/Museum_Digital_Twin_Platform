@@ -6,23 +6,33 @@
     <div class="nav-items">
       <router-link to="/home" class="nav-item" active-class="active">
         <el-icon><House /></el-icon>
-        <span v-show="!isCollapsed">首页</span>
+        <transition name="fade-text">
+          <span v-if="!isCollapsed">首页</span>
+        </transition>
       </router-link>
       <router-link to="/visitor" class="nav-item" active-class="active">
-        <TeamOutlined />
-        <span v-show="!isCollapsed">访客</span>
+          <TeamOutlined />
+        <transition name="fade-text">
+          <span v-if="!isCollapsed">访客</span>
+        </transition>
       </router-link>
       <router-link to="/comment" class="nav-item" active-class="active">
         <el-icon><VideoCamera /></el-icon>
-        <span v-show="!isCollapsed">媒体</span>
+        <transition name="fade-text">
+          <span v-if="!isCollapsed">媒体</span>
+        </transition>
       </router-link>
       <router-link to="/map" class="nav-item" active-class="active">
         <el-icon><Location /></el-icon>
-        <span v-show="!isCollapsed">地图</span>
+        <transition name="fade-text">
+          <span v-if="!isCollapsed">地图</span>
+        </transition>
       </router-link>
       <router-link to="/product" class="nav-item" active-class="active">
         <el-icon><Goods /></el-icon>
-        <span v-show="!isCollapsed">展品</span>
+        <transition name="fade-text">
+          <span v-if="!isCollapsed">展品</span>
+        </transition>
       </router-link>
     </div>
   </nav>
@@ -91,17 +101,21 @@ export default {
   height: 7vh;
 }
 
+.nav-toggle .el-icon {
+  font-size: 2.4vh;
+}
+
 .nav-items {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .nav-item {
   padding: 10px 20px;
+  height: 6vh;
   display: flex;
   align-items: center;
-  gap: 12px;
+  /* gap: 12px; */
   cursor: pointer;
   transition: all 0.3s;
   font-size: 1.8vh;
@@ -125,12 +139,14 @@ export default {
 }
 
 .nav-item .el-icon {
-  font-size: 2.2vh;
+  font-size: 2.4vh;
+  margin-right: 2vh;
 }
 
 .nav-item .anticon {
-  font-size: 2.2vh;
+  font-size: 2.4vh;
   color: #fff;
+  margin-right: 2vh;
 }
 
 @media screen and (max-height: 600px) {
@@ -143,5 +159,21 @@ export default {
   .nav-item { font-size: 24px; }
   .nav-item .el-icon { font-size: 26px; }
   .nav-item .anticon { font-size: 26px; }
+}
+
+/* Transition for nav item text */
+.fade-text-enter-active,
+.fade-text-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-text-enter-from,
+.fade-text-leave-to {
+  opacity: 0;
+}
+
+.fade-text-enter-to,
+.fade-text-leave-from {
+  opacity: 1;
 }
 </style> 
