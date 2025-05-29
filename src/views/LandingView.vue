@@ -108,7 +108,7 @@ const goToHome = () => {
     relic3Ref.value.classList.add('relic-exit-animation');
   }
   if (exploreButtonRef.value) {
-    exploreButtonRef.value.classList.add('relic-exit-animation');
+    exploreButtonRef.value.classList.add('explore-button-exit-animation');
   }
   if (overlayImageRef.value) {
     overlayImageRef.value.classList.add('overlay-image-exit-active');
@@ -431,8 +431,8 @@ const goToHome = () => {
   overflow: hidden;
 }
 
-/* 波纹光晕悬浮效果 */
-.explore-button:hover {
+/* Change .explore-button:hover to .explore-button:hover:not(.explore-button-exit-animation) */
+.explore-button:hover:not(.explore-button-exit-animation) {
   transform: scale(1.1);
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
   animation: rippleGlow 1.5s ease-out infinite;
@@ -452,11 +452,20 @@ const goToHome = () => {
   transition: all 0.6s ease;
 }
 
-.explore-button:hover::before {
+/* Change .explore-button:hover::before to .explore-button:hover:not(.explore-button-exit-animation)::before */
+.explore-button:hover:not(.explore-button-exit-animation)::before {
   width: 200%;
   height: 200%;
   opacity: 1;
   animation: rippleExpand 1.2s ease-out infinite;
+}
+
+/* Add rule to reset ::before when exiting */
+.explore-button.explore-button-exit-animation::before {
+  animation: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 @keyframes rippleGlow {
@@ -515,6 +524,29 @@ const goToHome = () => {
 
 .relic-exit-animation {
   animation: relicExit 0.5s ease-out forwards;
+}
+
+/* explore按钮专门退场动画 */
+@keyframes exploreButtonExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(10px) scale(1.05);
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.9));
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+  }
+}
+
+.explore-button-exit-animation {
+  animation: exploreButtonExit 0.6s ease-out forwards;
 }
 
 /* 覆盖图片退场动画 */
@@ -577,7 +609,7 @@ const goToHome = () => {
 @keyframes overlayImageSlideDown {
   from {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-60px); /* 从 -30px 修改为 -60px */
   }
   to {
     opacity: 1;

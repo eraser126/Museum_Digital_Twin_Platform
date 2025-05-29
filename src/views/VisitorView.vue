@@ -120,10 +120,14 @@
                 </div>
             </div>
             <div class="chart-block">
-              <img src="@/assets/Group 1190.svg" alt="分时段入人数次">
+              <div style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; padding: 1vh; background-color: rgba(0, 0, 0, 0.4); ">
+                <img src="@/assets/Group 1205.svg" alt="分时段入人数次">
+              </div>
             </div>
             <div class="chart-block">
-              <img src="@/assets/Group 1194.svg" alt="超细化单日人流量监测表">
+              <div style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; padding: 1vh; background-color: rgba(0, 0, 0, 0.4); ">
+                <img src="@/assets/Group 1194.svg" alt="超细化单日人流量监测表">
+              </div>
             </div>
 
             <div class="chart-block">
@@ -522,6 +526,7 @@ tbody tr:hover {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   height: 100%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -543,7 +548,6 @@ tbody tr:hover {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
   /* 图片本身不加单独hover，由父级.chart-block控制 */
 }
